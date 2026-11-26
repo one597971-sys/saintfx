@@ -1,0 +1,83 @@
+.tick-analysis {
+    padding: 1.6rem;
+    color: var(--text-general, #0f172a);
+    font-size: 1.3rem;
+    overflow: auto;
+    height: 100%;
+
+    &__bar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1.2rem;
+        margin-bottom: 1.2rem;
+    }
+    &__note { opacity: 0.7; flex: 1 1 24rem; }
+    &__status {
+        padding: 0.2rem 0.8rem;
+        border-radius: 1rem;
+        font-weight: 700;
+        background: #f59e0b33;
+        &--live { background: #10b98133; }
+        &--closed { background: #ef444433; }
+    }
+    &__grid {
+        display: grid;
+        gap: 1.6rem;
+        grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
+    }
+    &__panel {
+        border: 1px solid var(--border-normal, #cbd5e1);
+        border-radius: 0.8rem;
+        padding: 1.2rem;
+        max-height: 60rem;
+        overflow: auto;
+        h3 { margin: 0 0 0.8rem; }
+    }
+    &__table {
+        width: 100%;
+        border-collapse: collapse;
+        th, td { text-align: left; padding: 0.5rem 0.6rem; }
+        tbody tr { cursor: pointer; }
+        tbody tr:hover, tr.is-selected { background: #3b82f61a; }
+        tr.is-stale { opacity: 0.5; }
+    }
+    &__badge {
+        padding: 0.1rem 0.6rem;
+        border-radius: 0.4rem;
+        font-weight: 700;
+        font-size: 1.1rem;
+        background: #94a3b833;
+        &--strong { background: #ef444433; }
+        &--moderate { background: #f59e0b33; }
+        &--weak { background: #0ea5e933; }
+    }
+    &__detail { opacity: 0.8; margin: 0 0 1rem; }
+    &__digits {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        gap: 0.4rem;
+        text-align: center;
+    }
+    &__digit { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; }
+    &__digit-bar {
+        height: 8rem;
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        background: #94a3b81a;
+        border-radius: 0.3rem;
+        > div { width: 100%; background: #3b82f6; border-radius: 0.3rem; &.hot { background: #10b981; } &.cold { background: #ef4444; } }
+    }
+    &__stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+        margin: 1.2rem 0;
+        div { display: flex; flex-direction: column; opacity: 0.9; }
+    }
+    &__ou { display: flex; flex-direction: column; gap: 0.4rem; }
+    &__strip { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 1rem; span { width: 2rem; text-align: center; background: #94a3b822; border-radius: 0.3rem; } }
+    &__risk { display: grid; gap: 0.8rem; label { display: flex; flex-direction: column; gap: 0.2rem; } }
+    &__plan { margin: 1.2rem 0 0; padding-left: 1.6rem; line-height: 2; }
+}

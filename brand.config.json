@@ -109,7 +109,7 @@
                 "derivatives": "derivatives/"
             }
         },
-        "show_name": true,
-        "logo_path": null
+        "show_name": false,
+        "logo_path": "/logo.png"
     }
 }

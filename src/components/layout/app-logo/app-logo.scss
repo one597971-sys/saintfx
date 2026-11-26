@@ -19,8 +19,6 @@
         width: auto;
         max-width: 160px;
         object-fit: contain;
-        // Keeps the silver/white parts of the SFx logo readable on a light header.
-        filter: drop-shadow(0 0 1px rgba(15, 23, 42, 0.55));
     }
 
     // Letter-badge fallback shown when no logo file/data URL is available.

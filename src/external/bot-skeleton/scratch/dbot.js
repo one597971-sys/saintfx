@@ -6,7 +6,7 @@ import Interpreter from '../services/tradeEngine/utils/interpreter';
 import { compareXml, observer as globalObserver } from '../utils';
 import { getSavedWorkspaces, saveWorkspaceToRecent } from '../utils/local-storage';
 import { isDbotRTL } from '../utils/workspace';
-import main_xml from './xml/ascend-primer.xml'; // default bot (Ascend Primer); main.xml stays the blank template
+import main_xml from './xml/main.xml';
 import { forgetAccumulatorsProposalRequest } from './accumulators-proposal-handler';
 import { loadBlockly } from './blockly';
 import DBotStore from './dbot-store';
@@ -177,7 +177,7 @@ class DBot {
                 window.Blockly.getMainWorkspace().strategy_to_load = main_xml;
                 window.Blockly.getMainWorkspace().RTL = isDbotRTL();
 
-                let file_name = 'Ascend Primer';
+                let file_name = config().default_file_name;
                 if (recent_files && recent_files.length) {
                     const latest_file = recent_files[0];
                     window.Blockly.derivWorkspace.strategy_to_load = latest_file.xml;

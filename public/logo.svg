@@ -1,34 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 200" width="560" height="200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#4ade80"/>
       <stop offset="1" stop-color="#047857"/>
     </linearGradient>
-    <linearGradient id="t" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#4ade80"/>
-      <stop offset="1" stop-color="#10b981"/>
-    </linearGradient>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#111c2e"/>
-      <stop offset="1" stop-color="#070d18"/>
-    </linearGradient>
   </defs>
-  <rect x="4" y="4" width="552" height="192" rx="96" fill="url(#bg)" stroke="#10b981" stroke-opacity="0.55" stroke-width="3"/>
-  <!-- mark -->
-  <circle cx="100" cy="100" r="68" fill="url(#g)"/>
-  <circle cx="100" cy="100" r="68" fill="none" stroke="#ffffff" stroke-opacity="0.25" stroke-width="2"/>
-  <g stroke="#ffffff" stroke-width="5" stroke-linecap="round">
-    <line x1="68" y1="100" x2="68" y2="146"/>
-    <line x1="100" y1="82" x2="100" y2="140"/>
-    <line x1="132" y1="58" x2="132" y2="124"/>
+  <rect width="64" height="64" rx="15" fill="url(#g)"/>
+  <g stroke="#ffffff" stroke-width="3.2" stroke-linecap="round">
+    <line x1="15.5" y1="36" x2="15.5" y2="54"/>
+    <line x1="32" y1="27" x2="32" y2="50"/>
+    <line x1="48.5" y1="12" x2="48.5" y2="42"/>
   </g>
   <g fill="#ffffff">
-    <rect x="58" y="112" width="20" height="26" rx="4" opacity="0.7"/>
-    <rect x="90" y="92" width="20" height="38" rx="4" opacity="0.85"/>
-    <rect x="122" y="68" width="20" height="46" rx="4"/>
+    <rect x="10" y="40" width="11" height="9" rx="2.5" opacity="0.75"/>
+    <rect x="26.5" y="32" width="11" height="13" rx="2.5" opacity="0.88"/>
+    <rect x="43" y="18" width="11" height="18" rx="2.5"/>
   </g>
-  <polyline points="60,126 94,102 120,84 146,56" fill="none" stroke="#052e22" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
-  <polygon points="150,48 134,54 148,68" fill="#052e22" opacity="0.9"/>
-  <!-- wordmark -->
-  <text x="198" y="124" font-family="Inter, 'DejaVu Sans', sans-serif" font-weight="800" font-size="84" letter-spacing="-2" fill="#ffffff">Saint<tspan fill="url(#t)">Fx</tspan></text>
+  <polyline points="9,38 25,26 34,20 50,9" fill="none" stroke="#04281e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="56,5 41,8 53,20" fill="#04281e"/>
 </svg>

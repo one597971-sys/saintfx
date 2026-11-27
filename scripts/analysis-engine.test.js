@@ -1,0 +1,28 @@
+const assert = require('assert');
+const E = require('../public/analysis/engine.js');
+assert.strictEqual(E.lastDigit(1234.5, 2), 0);
+assert.strictEqual(E.lastDigit(1234.57, 2), 7);
+assert.strictEqual(E.lastDigit('99.123', 3), 3);
+assert.strictEqual(E.lastDigit('abc', 2), null);
+assert.deepStrictEqual(E.digitsFromPrices([1.10, 2.25, 3.3], 2), [0, 5, 0]);
+const d = [1, 1, 2, 3, 3, 3, 0, 9, 9];
+const dist = E.distribution(d, 0);
+assert.strictEqual(dist.total, 9); assert.strictEqual(dist.hottest, 3); assert.strictEqual(dist.latest, 9);
+assert.strictEqual(dist.counts[3], 3); assert.strictEqual(E.distribution(d, 3).total, 3);
+assert.strictEqual(E.distribution([], 10).hottest, null);
+const eo = E.evenOdd([1, 3, 5, 2, 4, 6, 8, 7], 0);
+assert.strictEqual(eo.odd, 4); assert.strictEqual(eo.even, 4);
+assert.strictEqual(eo.maxEvenStreak, 4); assert.strictEqual(eo.maxOddStreak, 3);
+assert.deepStrictEqual(eo.currentStreak, { type: 'odd', length: 1 });
+const ou = E.overUnder([5, 6, 7, 4, 5, 0, 9], 5, 0);
+assert.strictEqual(ou.over, 3); assert.strictEqual(ou.under, 2); assert.strictEqual(ou.equal, 2);
+assert.strictEqual(ou.theoreticalOverPct, 40); assert.strictEqual(ou.theoreticalUnderPct, 50);
+assert.strictEqual(ou.maxOverStreak, 2);
+assert.strictEqual(E.overUnder([0, 1], 0, 0).theoreticalOverPct, 90);
+assert.strictEqual(E.overUnder([0, 1], 9, 0).theoreticalUnderPct, 90);
+assert.deepStrictEqual(E.parseHistory({ history: { prices: ['1.1', 2], times: [1, 2] }, pip_size: 2 }),
+    { prices: [1.1, 2], times: [1, 2], pipSize: 2 });
+assert.strictEqual(E.parseHistory({}), null);
+assert.strictEqual(E.parseTick({ tick: { quote: '10.50', epoch: 5, underlying_symbol: 'R_10', pip_size: 2 }, subscription: { id: 'x' } }).symbol, 'R_10');
+assert.strictEqual(E.parseTick({ tick: {} }), null);
+console.log('engine tests passed');

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deriv Analysis Tool</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="app">
+  <header class="bar">
+    <div class="field"><label for="market">Market</label><select id="market"></select></div>
+    <div class="field"><label for="history">History to fetch</label><select id="history"></select></div>
+    <div class="field"><label for="window">Analyse last</label><select id="window"></select></div>
+    <div class="field"><label for="barrier">Barrier (0–9)</label><select id="barrier"></select></div>
+    <button id="refetch" type="button">Fetch history</button>
+    <span id="status" class="status" role="status"><i></i><b>Connecting…</b></span>
+  </header>
+
+  <div id="banner" class="banner" hidden></div>
+
+  <section class="cards" id="summary">
+    <div class="card"><span>Ticks loaded</span><strong id="s-total">–</strong></div>
+    <div class="card"><span>Latest price</span><strong id="s-price">–</strong></div>
+    <div class="card"><span>Latest digit</span><strong id="s-last">–</strong></div>
+    <div class="card"><span>Hottest digit</span><strong id="s-hot" class="hot">–</strong></div>
+    <div class="card"><span>Coldest digit</span><strong id="s-cold" class="cold">–</strong></div>
+  </section>
+
+  <section class="panel">
+    <h2>Last digit distribution <small id="dist-n"></small></h2>
+    <div id="bars" class="bars"></div>
+  </section>
+
+  <div class="grid">
+    <section class="panel">
+      <h2>Even / Odd</h2>
+      <div class="split"><div id="eo-even" class="seg even"></div><div id="eo-odd" class="seg odd"></div></div>
+      <div class="two">
+        <div><span>Even</span><strong id="eo-even-n">–</strong><em id="eo-even-p"></em></div>
+        <div><span>Odd</span><strong id="eo-odd-n">–</strong><em id="eo-odd-p"></em></div>
+      </div>
+      <dl class="kv">
+        <dt>Current streak</dt><dd id="eo-cur">–</dd>
+        <dt>Longest even streak</dt><dd id="eo-me">–</dd>
+        <dt>Longest odd streak</dt><dd id="eo-mo">–</dd>
+      </dl>
+    </section>
+
+    <section class="panel">
+      <h2>Over / Under <small id="ou-title"></small></h2>
+      <div class="split"><div id="ou-under" class="seg under"></div><div id="ou-eq" class="seg eq"></div><div id="ou-over" class="seg over"></div></div>
+      <div class="three">
+        <div><span>Under</span><strong id="ou-under-n">–</strong><em id="ou-under-p"></em></div>
+        <div><span>Equal</span><strong id="ou-eq-n">–</strong><em id="ou-eq-p"></em></div>
+        <div><span>Over</span><strong id="ou-over-n">–</strong><em id="ou-over-p"></em></div>
+      </div>
+      <dl class="kv">
+        <dt>Expected (random)</dt><dd id="ou-exp">–</dd>
+        <dt>Current streak</dt><dd id="ou-cur">–</dd>
+        <dt>Longest over / under streak</dt><dd id="ou-max">–</dd>
+      </dl>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>Latest 30 digits <small>newest on the right</small></h2>
+    <div id="feed" class="feed"></div>
+  </section>
+
+  <p class="note">Statistics describe past ticks only. Synthetic index ticks are random, so streaks and hot/cold digits do not predict the next tick. Trade only what you can afford to lose.</p>
+</main>
+<script src="config.js"></script>
+<script src="engine.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -76,7 +76,7 @@ const AppWrapper = observer(() => {
     const { clear } = summary_card;
     const { DASHBOARD, BOT_BUILDER } = DBOT_TABS;
     const init_render = React.useRef(true);
-    const hash = ['dashboard', 'bot_builder', 'chart'];
+    const hash = ['dashboard', 'bot_builder', 'chart', 'analysis'];
     const { isDesktop } = useDevice();
     const location = useLocation();
     const navigate = useNavigate();
@@ -418,6 +418,27 @@ const AppWrapper = observer(() => {
                                 >
                                     <ChartWrapper show_digits_stats={false} />
                                 </Suspense>
+                            </div>
+                            <div
+                                label={
+                                    <>
+                                        <LabelPairedChartLineCaptionRegularIcon
+                                            height='24px'
+                                            width='24px'
+                                            fill='var(--text-general)'
+                                        />
+                                        <Localize i18n_default_text='Analysis' />
+                                    </>
+                                }
+                                id='id-analysis'
+                            >
+                                {active_tab === DBOT_TABS.ANALYSIS && (
+                                    <iframe
+                                        title='Deriv Analysis Tool'
+                                        src='/analysis/index.html'
+                                        style={{ width: '100%', height: 'calc(100vh - 140px)', minHeight: 560, border: 0 }}
+                                    />
+                                )}
                             </div>
                         </Tabs>
                         {!isDesktop && right_tab_shadow && <span className='tabs-shadow tabs-shadow--right' />}{' '}

@@ -5,6 +5,7 @@ import { addComma, getCurrencyDisplayCode, getDecimalPlaces } from '@/components
 import Text from '@/components/shared_ui/text';
 import { api_base } from '@/external/bot-skeleton/services/api/api-base';
 import { useApiBase } from '@/hooks/useApiBase';
+import useDisplayCurrency from '@/hooks/useDisplayCurrency';
 import { useStore } from '@/hooks/useStore';
 import { isDemoAccount } from '@/utils/account-helpers';
 import { Localize } from '@deriv-com/translations';
@@ -17,6 +18,7 @@ const AccountSwitcher = observer(({ activeAccount }: TAccountSwitcher) => {
     const wrapperRef = useRef<HTMLDivElement>(null);
     const { accountList, activeLoginid } = useApiBase();
     const { client, run_panel } = useStore() ?? {};
+    const { balanceLabel } = useDisplayCurrency();
 
     const is_bot_running = run_panel?.is_running || api_base.is_running;
     const isSingleAccount = !accountList || accountList.length <= 1;
@@ -131,7 +133,7 @@ const AccountSwitcher = observer(({ activeAccount }: TAccountSwitcher) => {
                                     {!currency ? (
                                         <Localize i18n_default_text='No currency assigned' />
                                     ) : (
-                                        `${balance} ${getCurrencyDisplayCode(currency)}`
+                                        balanceLabel(balance, currency, getCurrencyDisplayCode(currency))
                                     )}
                                 </p>
                             </div>
@@ -173,7 +175,7 @@ const AccountSwitcher = observer(({ activeAccount }: TAccountSwitcher) => {
                             </Text>
                             <Text size='xs' weight='bold' className='acc-dropdown__balance'>
                                 {account.currency ? (
-                                    `${account.balance} ${getCurrencyDisplayCode(account.currency)}`
+                                    balanceLabel(account.balance, account.currency, getCurrencyDisplayCode(account.currency))
                                 ) : (
                                     <Localize i18n_default_text='No currency assigned' />
                                 )}

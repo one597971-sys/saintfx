@@ -12,6 +12,7 @@ import { Localize } from '@deriv-com/translations';
 import { Header, useDevice, Wrapper } from '@deriv-com/ui';
 import { AppLogo } from '../app-logo';
 import AccountSwitcher from './account-switcher';
+import CurrencyToggle from './currency-toggle';
 import MenuItems from './menu-items';
 import MobileMenu from './mobile-menu';
 import './header.scss';
@@ -141,12 +142,14 @@ const AppHeader = observer(() => {
                             <div className='account-info'>
                                 <AccountSwitcher activeAccount={activeAccount} />
                             </div>
+                            <CurrencyToggle />
                         </div>
                     );
                 } else if (position === 'right') {
                     // For right section - transfer button (and account switcher on desktop)
                     return (
                         <div className='auth-actions'>
+                            {isDesktop && <CurrencyToggle />}
                             {isDesktop && (
                                 <div className='account-info'>
                                     <AccountSwitcher activeAccount={activeAccount} />

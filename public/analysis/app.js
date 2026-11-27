@@ -169,6 +169,28 @@
     $('barrier').addEventListener('change', render);
     window.addEventListener('beforeunload', function () { if (state.subId) send({ forget: state.subId }); if (state.ws) state.ws.close(); });
 
+    // When embedded in the app, follow the chart / bot symbol sent by the parent page.
+    function setMarket(symbol) {
+        if (typeof symbol !== 'string' || !/^[A-Za-z0-9_]{1,30}$/.test(symbol)) return false;
+        var sel = $('market');
+        if (!Array.prototype.some.call(sel.options, function (o) { return o.value === symbol; })) {
+            var o = document.createElement('option'); o.value = symbol; o.textContent = symbol; sel.appendChild(o);
+        }
+        var changed = sel.value !== symbol;
+        sel.value = symbol;
+        return changed;
+    }
+    var started = false;
+    function start() { if (started) return; started = true; connect(); }
+    window.addEventListener('message', function (e) {
+        if (e.origin !== window.location.origin || !e.data || e.data.type !== 'analysis:set-symbol') return;
+        var changed = setMarket(e.data.symbol);
+        if (!started) start(); else if (changed) fetchHistory();
+    });
+
     render();
-    connect();
+    if (window.parent !== window) {
+        window.parent.postMessage({ type: 'analysis:ready' }, window.location.origin);
+        setTimeout(start, 600); // fall back to the default market if no symbol arrives
+    } else start();
 })();

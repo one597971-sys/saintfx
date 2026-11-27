@@ -47,7 +47,9 @@ const ChartWrapper = lazy(() => import('../chart/chart-wrapper'));
 
 const AppWrapper = observer(() => {
     const { connectionStatus } = useApiBase();
-    const { dashboard, load_modal, run_panel, quick_strategy, summary_card, blockly_store } = useStore();
+    const { dashboard, load_modal, run_panel, quick_strategy, summary_card, blockly_store, chart_store } = useStore();
+    const analysis_frame = React.useRef<HTMLIFrameElement>(null);
+    const chart_symbol = chart_store?.symbol;
     const { is_loading } = blockly_store;
     const {
         active_tab,
@@ -76,6 +78,24 @@ const AppWrapper = observer(() => {
     const { clear } = summary_card;
     const { DASHBOARD, BOT_BUILDER } = DBOT_TABS;
     const init_render = React.useRef(true);
+
+    // Keep the Analysis tab on the same market as the chart / bot builder.
+    const postAnalysisSymbol = React.useCallback(() => {
+        if (!chart_symbol) return;
+        analysis_frame.current?.contentWindow?.postMessage(
+            { type: 'analysis:set-symbol', symbol: chart_symbol },
+            window.location.origin
+        );
+    }, [chart_symbol]);
+
+    useEffect(() => {
+        postAnalysisSymbol();
+        const onMessage = (event: MessageEvent) => {
+            if (event.origin === window.location.origin && event.data?.type === 'analysis:ready') postAnalysisSymbol();
+        };
+        window.addEventListener('message', onMessage);
+        return () => window.removeEventListener('message', onMessage);
+    }, [postAnalysisSymbol]);
     const hash = ['dashboard', 'bot_builder', 'chart', 'analysis'];
     const { isDesktop } = useDevice();
     const location = useLocation();
@@ -434,6 +454,7 @@ const AppWrapper = observer(() => {
                             >
                                 {active_tab === DBOT_TABS.ANALYSIS && (
                                     <iframe
+                                        ref={analysis_frame}
                                         title='Deriv Analysis Tool'
                                         src='/analysis/index.html'
                                         style={{ width: '100%', height: 'calc(100vh - 140px)', minHeight: 560, border: 0 }}

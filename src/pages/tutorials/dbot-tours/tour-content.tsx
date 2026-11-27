@@ -33,7 +33,7 @@ export const DBOT_ONBOARDING = [
                         <Localize i18n_default_text='Create your bot using our drag-and-drop blocks or click Quick Strategy to choose from the ready-to-use bot templates.' />
                     </>,
                     <>
-                        <Localize i18n_default_text='We also provide a guide on the Tutorial tab to show you how you can build and execute a simple strategy.' />
+                        <Localize i18n_default_text='Load the default Ascend Primer bot or build your own strategy, then press Run.' />
                     </>,
                 ]}
                 media={'/assets/videos/dbot-onboarding-tour-step-1.mp4'}
@@ -62,24 +62,6 @@ export const DBOT_ONBOARDING = [
         disableOverlay: false,
     },
     {
-        target: '#id-tutorials',
-        content: (
-            <TourSteps
-                label={<Localize i18n_default_text='Learn more with our tutorials' />}
-                content={[
-                    <Localize
-                        key='explore tutorials'
-                        i18n_default_text='Explore the video guides and FAQs to build your bot in the tutorials tab.'
-                    />,
-                ]}
-                media={'/assets/videos/dbot-onboarding-tour-step-3.mp4'}
-                step_index={3}
-            />
-        ),
-        ...joyride_props,
-        disableOverlay: false,
-    },
-    {
         target: '#tab__dashboard__table__tiles',
         content: (
             <TourSteps
@@ -90,7 +72,7 @@ export const DBOT_ONBOARDING = [
                         i18n_default_text='You can also import or build your bot using any of these shortcuts.'
                     />,
                 ]}
-                step_index={4}
+                step_index={3}
             />
         ),
         placement: isDbotRTL() ? 'right' : 'left',
@@ -109,7 +91,7 @@ export const DBOT_ONBOARDING = [
                     />,
                 ]}
                 media={'/assets/videos/dbot-onboarding-tour-step-5.mp4'}
-                step_index={5}
+                step_index={4}
             />
         ),
         placement: isDbotRTL() ? 'left' : 'right',
@@ -129,23 +111,23 @@ export const DBOT_ONBOARDING = [
                     />,
                 ]}
                 media={'/assets/videos/dbot-onboarding-tour-step-6.mp4'}
-                step_index={6}
+                step_index={5}
             />
         ),
         ...joyride_props,
         disableOverlay: false,
     },
     {
-        target: '#id-tutorials',
+        target: '#id-bot-builder',
         content: (
             <TourSteps
-                label={<Localize i18n_default_text='Want to retake the tour?' />}
+                label={<Localize i18n_default_text='You are all set' />}
                 content={[
-                    <Text key={`${0}-id-tutorials`} as='p'>
-                        <Localize i18n_default_text='Head to the Tutorials tab to do so.' />
+                    <Text key={`${0}-id-bot-builder`} as='p'>
+                        <Localize i18n_default_text='Open the Bot Builder to load a strategy and start trading.' />
                     </Text>,
                 ]}
-                step_index={7}
+                step_index={6}
                 show_actions={false}
                 has_localize_component
             />
@@ -522,19 +504,6 @@ export const DBOT_ONBOARDING_MOBILE: TMobileTourConfig[] = [
         tour_step_key: 3,
     },
     {
-        header: <Localize i18n_default_text='Learn more with our tutorials' />,
-        content: [
-            <span key='learn-more-with-our-tutorials-wrapper'>
-                <Localize
-                    key='learn-more-with-our-tutorials'
-                    i18n_default_text='Explore the video guides and FAQs to build your bot in the tutorials tab.'
-                />
-            </span>,
-        ],
-        media: '/assets/videos/dbot-mobile-onboarding-step-3.mp4',
-        tour_step_key: 4,
-    },
-    {
         header: <Localize i18n_default_text='Use these shortcuts' />,
         img: getImageLocation('dbot-mobile-onboarding-step-4.png'),
         content: [
@@ -545,7 +514,7 @@ export const DBOT_ONBOARDING_MOBILE: TMobileTourConfig[] = [
                 />
             </span>,
         ],
-        tour_step_key: 5,
+        tour_step_key: 4,
     },
     {
         header: <Localize i18n_default_text='Check your bot’s performance' />,
@@ -558,7 +527,7 @@ export const DBOT_ONBOARDING_MOBILE: TMobileTourConfig[] = [
                 />
             </span>,
         ],
-        tour_step_key: 6,
+        tour_step_key: 5,
     },
     {
         header: <Localize i18n_default_text='Run your bot' />,
@@ -572,17 +541,17 @@ export const DBOT_ONBOARDING_MOBILE: TMobileTourConfig[] = [
                 />
             </span>,
         ],
-        tour_step_key: 7,
+        tour_step_key: 6,
     },
     {
-        header: <Localize i18n_default_text='Want to retake the tour?' />,
+        header: <Localize i18n_default_text='You are all set' />,
         img: getImageLocation('dbot-mobile-onboarding-step-7.png'),
         content: [
             <span key='want-to-retake-the-tour-wrapper'>
-                <Localize key='want-to-retake-the-tour' i18n_default_text='Head to the Tutorials tab to do so.' />
+                <Localize key='want-to-retake-the-tour' i18n_default_text='You are all set. Open the Bot Builder to start trading.' />
             </span>,
         ],
-        tour_step_key: 8,
+        tour_step_key: 7,
     },
 ];
 

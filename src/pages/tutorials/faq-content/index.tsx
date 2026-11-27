@@ -3,7 +3,6 @@ import React, { KeyboardEvent } from 'react';
 import parse from 'html-react-parser';
 import Accordion from '@/components/shared_ui/accordion';
 import Text from '@/components/shared_ui/text';
-import { DBOT_TABS } from '@/constants/bot-contents';
 import { useStore } from '@/hooks/useStore';
 import { Localize } from '@deriv-com/translations';
 import { useDevice } from '@deriv-com/ui';
@@ -58,7 +57,6 @@ const FAQContent = ({ faq_list, handleTabChange }: TFAQContent) => {
                     if (Number(faq_title.split('-')[1]) === index) {
                         data.click();
                         setFaqTitle('');
-                        handleTabChange(DBOT_TABS.TUTORIAL);
                     }
                 });
             }

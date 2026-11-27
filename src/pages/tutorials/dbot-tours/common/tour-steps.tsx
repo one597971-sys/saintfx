@@ -20,7 +20,7 @@ const TourSteps = observer(
                     {show_actions && (
                         <div className='onboard__header'>
                             <Text color='less-prominent' lineHeight='l'>
-                                {step_index}/6
+                                {step_index}/5
                             </Text>
                         </div>
                     )}

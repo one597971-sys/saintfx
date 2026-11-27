@@ -31,9 +31,9 @@ const OnboardingTourMobile = observer(() => {
     const [tour_data, setTourData] = React.useState<TTourData>(default_tour_data);
     const { content, header, img, media, tour_step_key } = tour_data;
     const start_button = tour_step === 1 ? localize('Start') : localize('Next');
-    const tour_button_text = tour_step === 8 ? localize('Got it, thanks!') : start_button;
-    const test_id = tour_step_key === 8 ? 'finish-onboard-tour' : 'next-onboard-tour';
-    const hide_prev_button = [1, 2, 8];
+    const tour_button_text = tour_step === 7 ? localize('Got it, thanks!') : start_button;
+    const test_id = tour_step_key === 7 ? 'finish-onboard-tour' : 'next-onboard-tour';
+    const hide_prev_button = [1, 2, 7];
     const is_tour_active = active_tour === 'onboarding';
 
     React.useEffect(() => {
@@ -78,7 +78,7 @@ const OnboardingTourMobile = observer(() => {
                         lineHeight='s'
                         size='xxs'
                         data-testid='dbot-onboard-slider__navbar'
-                    >{`${tour_step_key - 1}/7`}</Text>
+                    >{`${tour_step_key - 1}/6`}</Text>
                     <span onClick={onCloseTour}>
                         <LegacyClose1pxIcon
                             height='20px'
